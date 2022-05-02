@@ -22,14 +22,16 @@
 
 void app_main() 
 {
-    init_adc();
+    //init_adc();
 
     uint32_t raw, voltage;
 
+    struct ADC_InPut *DHT_11 = newADC_InPut(ADC_CHANNEL_6, ADC_ATTEN_DB_0, ADC_UNIT_1);
+
     while(1)
     {
-        raw = adc_raw();
-        voltage = adv_voltage();
+        raw = DHT_11->adc_raw(DHT_11);
+        voltage = DHT_11->adc_voltage(DHT_11);
         printf("-Raw: %d\t-Voltage: %dmV\n", raw, voltage);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }

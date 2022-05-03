@@ -26,12 +26,12 @@ void app_main()
 
     uint32_t raw, voltage;
 
-    struct ADC_InPut *DHT_11 = newADC_InPut(ADC_CHANNEL_6, ADC_ATTEN_DB_0, ADC_UNIT_1);
+    struct ADC_InPut *ADC_object = newADC_InPut(ADC_CHANNEL_6, ADC_ATTEN_DB_0, ADC_UNIT_1);
 
     while(1)
     {
-        raw = DHT_11->adc_raw(DHT_11);
-        voltage = DHT_11->adc_voltage(DHT_11);
+        raw = ADC_object->adc_raw(ADC_object);
+        voltage = ADC_object->adc_voltage(ADC_object);
         printf("-Raw: %d\t-Voltage: %dmV\n", raw, voltage);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
